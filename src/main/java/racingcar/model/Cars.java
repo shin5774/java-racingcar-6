@@ -34,17 +34,17 @@ public class Cars {
     }
 
     public List<Car> findWinningCars() {
-        int maxPosition = findMaxPosition();
+        Position maxPosition = findMaxPosition();
 
         return cars.stream()
                 .filter(cars -> cars.getPosition() == maxPosition)
                 .toList();
     }
 
-    private int findMaxPosition() {
+    private Position findMaxPosition() {
         return cars.stream()
+                .max(Car::compareTo)
                 .map(Car::getPosition)
-                .max(Integer::compareTo)
                 .get();
     }
 }

@@ -7,6 +7,8 @@ import racingcar.dto.TotalResult;
 import racingcar.dto.Winners;
 
 public class OutputView {
+    private final String FORWARD_STATE_MARKER = "-";
+
     public void displayTotalResult(TotalResult totalResult) {
         blankLine();
         System.out.println(Message.ROUNDS_RESULT.message());
@@ -20,7 +22,11 @@ public class OutputView {
     }
 
     private void displayCarResult(CarResult carResult) {
-        System.out.println(carResult.name() + " : " + carResult.forwardState());
+        System.out.println(carResult.name() + " : " + getForwardState(carResult.position()));
+    }
+
+    private String getForwardState(int forwardState) {
+        return FORWARD_STATE_MARKER.repeat(forwardState);
     }
 
     public void displayFinalWinnerMessage(Winners winners) {

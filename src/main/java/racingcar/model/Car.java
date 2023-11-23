@@ -2,7 +2,7 @@ package racingcar.model;
 
 import racingcar.dto.CarResult;
 
-public class Car {
+public class Car implements Comparable<Car> {
     private final Name name;
     private final Position position;
 
@@ -20,14 +20,23 @@ public class Car {
     }
 
     public CarResult getCarResult() {
-        return new CarResult(getNameValue(), getForwardState());
+        return new CarResult(getNameValue(), getPosition().position());
     }
 
-    private String getForwardState() {
-        return position.getForwardState();
+    public Position getPosition() {
+        return position;
     }
 
-    public int getPosition() {
-        return position.getPosition();
+    @Override
+    public int compareTo(Car object) {
+        if (position.position() > object.position.position()) {
+            return 1;
+        }
+
+        if (position == object.position) {
+            return 0;
+        }
+
+        return -1;
     }
 }

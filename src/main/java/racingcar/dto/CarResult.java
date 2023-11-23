@@ -1,4 +1,4 @@
 package racingcar.dto;
 
-public record CarResult(String name, String forwardState) {
+public record CarResult(String name, int position) {
 }
