@@ -1,10 +1,15 @@
 package racingcar.controller;
 
-import racingcar.dto.AttemptCountDto;
-import racingcar.dto.CarsDto;
+import java.util.List;
+import racingcar.controller.request.RequestAttemptCountController;
+import racingcar.controller.request.RequestCarsController;
 import racingcar.dto.TotalResult;
 import racingcar.dto.Winners;
+import racingcar.model.AttemptCount;
+import racingcar.model.Car;
+import racingcar.model.Cars;
 import racingcar.service.RacingGameService;
+import racingcar.util.WinnersNameExtractor;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
@@ -21,41 +26,37 @@ public class RacingGameController {
     }
 
     public void start() {
-        generateCars();
-        setAttemptCount();
-        playRounds();
-        printWinners();
+        Cars cars = generateCars();
+        AttemptCount attemptCount = setAttemptCount();
+        playRounds(cars, attemptCount);
+        printWinners(cars);
     }
 
-    private void generateCars() {
-        racingGameService.generateCars(inputCarsName());
+    private Cars generateCars() {
+        return new RequestCarsController(inputView).proceed();
     }
 
-    private CarsDto inputCarsName() {
-        return inputView.requestCarsName();
+    private AttemptCount setAttemptCount() {
+        return new RequestAttemptCountController(inputView).proceed();
     }
 
-    private void setAttemptCount() {
-        racingGameService.setAttemptCount(inputAttemptCount());
-    }
-
-    private AttemptCountDto inputAttemptCount() {
-        return inputView.requestAttemptCount();
-    }
-
-    private void playRounds() {
-        printTotalResult(racingGameService.playRounds());
+    private void playRounds(Cars cars, AttemptCount attemptCount) {
+        printTotalResult(racingGameService.playRounds(cars, attemptCount));
     }
 
     private void printTotalResult(TotalResult totalResult) {
         outputView.displayTotalResult(totalResult);
     }
 
-    private void printWinners() {
-        outputView.displayFinalWinnerMessage(getWinners());
+    private void printWinners(Cars cars) {
+        outputView.displayFinalWinnerMessage(getWinners(cars));
     }
 
-    private Winners getWinners() {
-        return racingGameService.getWinners();
+    private Winners getWinners(Cars cars) {
+        return toWinners(cars.findWinningCars());
+    }
+
+    private Winners toWinners(List<Car> winnersCar) {
+        return WinnersNameExtractor.INSTANCE.extractName(winnersCar);
     }
 }
