@@ -1,4 +1,4 @@
-package racingcar.controller;
+package racingcar;
 
 import java.util.List;
 import java.util.stream.IntStream;
@@ -16,12 +16,12 @@ import racingcar.util.WinnersNameExtractor;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
-public class RacingGameController {
+public class RacingGameApplication {
 
     private final InputView inputView;
     private final OutputView outputView;
 
-    public RacingGameController(InputView inputView, OutputView outputView) {
+    public RacingGameApplication(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
         this.outputView = outputView;
     }
