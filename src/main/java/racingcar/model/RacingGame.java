@@ -2,15 +2,17 @@ package racingcar.model;
 
 import java.util.List;
 import racingcar.constants.ExceptionMessage;
+import racingcar.dto.CarsDto;
 import racingcar.dto.RoundResult;
 import racingcar.dto.Winners;
+import racingcar.util.CarsMapper;
 import racingcar.util.WinnersNameExtractor;
 
 public class RacingGame {
     private Cars cars;
 
-    public void generateCars(String inputNames) {
-        cars = new Cars(inputNames);
+    public void generateCars(CarsDto inputNames) {
+        cars = new CarsMapper().toDomain(inputNames);
     }
 
     public RoundResult playRound() {

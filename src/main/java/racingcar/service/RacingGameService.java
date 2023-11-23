@@ -3,12 +3,14 @@ package racingcar.service;
 import java.util.List;
 import java.util.stream.IntStream;
 import racingcar.constants.ExceptionMessage;
-import racingcar.dto.AttemptCount;
+import racingcar.dto.AttemptCountDto;
+import racingcar.dto.CarsDto;
 import racingcar.dto.RoundResult;
 import racingcar.dto.TotalResult;
 import racingcar.dto.Winners;
+import racingcar.model.AttemptCount;
 import racingcar.model.RacingGame;
-import racingcar.util.validator.AttemptCountValidator;
+import racingcar.util.AttemptCountMapper;
 
 public class RacingGameService {
     private final RacingGame racingGame;
@@ -18,17 +20,12 @@ public class RacingGameService {
         this.racingGame = racingGame;
     }
 
-    public void generateCars(String inputNames) {
+    public void generateCars(CarsDto inputNames) {
         racingGame.generateCars(inputNames);
     }
 
-    public void setAttemptCount(String inputCount) {
-        AttemptCountValidator.INSTANCE.validate(inputCount);
-        attemptCount = new AttemptCount(toInt(inputCount));
-    }
-
-    private int toInt(String input) {
-        return Integer.parseInt(input);
+    public void setAttemptCount(AttemptCountDto inputCount) {
+        attemptCount = new AttemptCountMapper().toDomain(inputCount);
     }
 
     public TotalResult playRounds() {

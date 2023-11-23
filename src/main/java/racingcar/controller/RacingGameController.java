@@ -1,5 +1,7 @@
 package racingcar.controller;
 
+import racingcar.dto.AttemptCountDto;
+import racingcar.dto.CarsDto;
 import racingcar.dto.TotalResult;
 import racingcar.dto.Winners;
 import racingcar.service.RacingGameService;
@@ -29,7 +31,7 @@ public class RacingGameController {
         racingGameService.generateCars(inputCarsName());
     }
 
-    private String inputCarsName() {
+    private CarsDto inputCarsName() {
         return inputView.requestCarsName();
     }
 
@@ -37,7 +39,7 @@ public class RacingGameController {
         racingGameService.setAttemptCount(inputAttemptCount());
     }
 
-    private String inputAttemptCount() {
+    private AttemptCountDto inputAttemptCount() {
         return inputView.requestAttemptCount();
     }
 
