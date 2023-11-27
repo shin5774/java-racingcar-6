@@ -1,4 +1,4 @@
-package racingcar.view;
+package racingcar.view.display;
 
 import java.util.List;
 import java.util.StringJoiner;

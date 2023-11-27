@@ -1,5 +1,6 @@
 package racingcar;
 
+import camp.nextstep.edu.missionutils.Console;
 import racingcar.controller.display.DisplayTotalResultController;
 import racingcar.controller.display.DisplayWinnerController;
 import racingcar.controller.process.FindWinnersController;
@@ -10,17 +11,8 @@ import racingcar.dto.TotalResult;
 import racingcar.dto.Winners;
 import racingcar.model.AttemptCount;
 import racingcar.model.Cars;
-import racingcar.view.InputView;
 
 public class RacingGameApplication {
-
-    private final InputView inputView;
-
-
-    public RacingGameApplication(InputView inputView) {
-        this.inputView = inputView;
-    }
-
     public void start() {
         Cars cars = requestCars();
         AttemptCount attemptCount = requestAttemptAmount();
@@ -32,12 +24,16 @@ public class RacingGameApplication {
         displayWinners(winners);
     }
 
+    public void finish() {
+        Console.close();
+    }
+
     private Cars requestCars() {
-        return new RequestCarsController(inputView).proceed();
+        return new RequestCarsController().proceed();
     }
 
     private AttemptCount requestAttemptAmount() {
-        return new RequestAttemptCountController(inputView).proceed();
+        return new RequestAttemptCountController().proceed();
     }
 
     private TotalResult playGame(Cars cars, AttemptCount attemptCount) {

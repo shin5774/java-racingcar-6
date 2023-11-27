@@ -1,7 +1,7 @@
 package racingcar.controller.display;
 
 import racingcar.dto.Winners;
-import racingcar.view.WinnersView;
+import racingcar.view.display.WinnersView;
 
 public class DisplayWinnerController implements DisplayController<Winners> {
     @Override
