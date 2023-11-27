@@ -3,6 +3,9 @@ package racingcar.model;
 import racingcar.dto.CarResult;
 
 public class Car implements Comparable<Car> {
+    private static final int COMPARE_UPPER_VALUE = 1;
+    private static final int COMPARE_EQUAL_VALUE = 0;
+    private static final int COMPARE_LOWER_VALUE = -1;
     private final Name name;
     private final Position position;
 
@@ -13,10 +16,6 @@ public class Car implements Comparable<Car> {
 
     public static Car from(Name name) {
         return new Car(name, Position.create());
-    }
-
-    public Name getName() {
-        return name;
     }
 
     public String getNameValue() {
@@ -38,11 +37,11 @@ public class Car implements Comparable<Car> {
     @Override
     public int compareTo(Car object) {
         if (position.value() > object.position.value()) {
-            return 1;
+            return COMPARE_UPPER_VALUE;
         }
         if (position == object.position) {
-            return 0;
+            return COMPARE_EQUAL_VALUE;
         }
-        return -1;
+        return COMPARE_LOWER_VALUE;
     }
 }

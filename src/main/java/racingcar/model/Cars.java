@@ -26,7 +26,7 @@ public class Cars {
 
     private static boolean hasDuplicated(List<Car> cars) {
         return cars.stream()
-                .map(Car::getName)
+                .map(Car::getNameValue)
                 .distinct()
                 .count() != cars.size();
     }
