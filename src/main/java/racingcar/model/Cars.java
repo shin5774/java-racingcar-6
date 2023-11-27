@@ -35,22 +35,21 @@ public class Cars {
 
     public RoundResult getRoundResult() {
         return new RoundResult(cars.stream()
-                .map(Car::getCarResult)
+                .map(Car::getCarState)
                 .toList());
     }
 
     public List<Car> findWinningCars() {
-        Position maxPosition = findMaxPosition();
+        Car winningCar = findWinningCar();
 
         return cars.stream()
-                .filter(cars -> cars.getPosition() == maxPosition)
+                .filter(car -> car.isSamePosition(winningCar))
                 .toList();
     }
 
-    private Position findMaxPosition() {
+    private Car findWinningCar() {
         return cars.stream()
                 .max(Car::compareTo)
-                .map(Car::getPosition)
                 .get();
     }
 }

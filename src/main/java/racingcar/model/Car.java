@@ -27,17 +27,17 @@ public class Car implements Comparable<Car> {
         position.attemptForward();
     }
 
-    public CarResult getCarResult() {
-        return new CarResult(getNameValue(), getPosition().position());
+    public CarResult getCarState() {
+        return new CarResult(name.getName(), position.value());
     }
 
-    public Position getPosition() {
-        return position;
+    public boolean isSamePosition(Car car) {
+        return position.equals(car.position);
     }
 
     @Override
     public int compareTo(Car object) {
-        if (position.position() > object.position.position()) {
+        if (position.value() > object.position.value()) {
             return 1;
         }
         if (position == object.position) {

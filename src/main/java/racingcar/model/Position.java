@@ -5,10 +5,10 @@ import racingcar.util.ForwardDecider;
 
 public class Position {
     private static final int START_POSITION_VALUE = 0;
-    private int position;
+    private int value;
 
-    private Position(int position) {
-        this.position = position;
+    private Position(int value) {
+        this.value = value;
     }
 
     public static Position create() {
@@ -22,11 +22,11 @@ public class Position {
     }
 
     private void moveForward() {
-        position++;
+        value++;
     }
 
-    public int position() {
-        return position;
+    public int value() {
+        return value;
     }
 
     @Override
@@ -38,11 +38,11 @@ public class Position {
             return false;
         }
         Position position1 = (Position) o;
-        return position == position1.position;
+        return value == position1.value;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(position);
+        return Objects.hash(value);
     }
 }
