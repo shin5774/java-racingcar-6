@@ -1,5 +1,7 @@
 package racingcar.model;
 
+import static racingcar.constants.ExceptionMessage.DUPLICATED_NAME;
+
 import java.util.List;
 import racingcar.dto.RoundResult;
 
@@ -18,7 +20,7 @@ public class Cars {
 
     private static void validate(List<Car> cars) {
         if (hasDuplicated(cars)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(DUPLICATED_NAME.message());
         }
     }
 

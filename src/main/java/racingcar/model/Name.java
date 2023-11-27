@@ -24,7 +24,7 @@ public class Name {
 
     private static void checkNameLength(String name) {
         if (isOutOfRange(name.length())) {
-            throw new IllegalArgumentException(ExceptionMessage.EXPLODE_NAME.message());
+            throw new IllegalArgumentException(ExceptionMessage.OUT_OF_RANGE_NAME_RANGE.message());
         }
     }
 
