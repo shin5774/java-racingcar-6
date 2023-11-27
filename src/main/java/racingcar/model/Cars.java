@@ -45,7 +45,7 @@ public class Cars {
         Car winningCar = findWinningCar();
 
         return cars.stream()
-                .filter(car -> car.isSamePosition(winningCar))
+                .filter(winningCar::isSamePosition)
                 .map(Car::getNameValue)
                 .toList();
     }
