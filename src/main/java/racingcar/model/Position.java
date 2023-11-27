@@ -4,10 +4,15 @@ import java.util.Objects;
 import racingcar.util.ForwardDecider;
 
 public class Position {
+    private static final int START_POSITION_VALUE = 0;
     private int position;
 
-    public Position() {
-        position = 0;
+    private Position(int position) {
+        this.position = position;
+    }
+
+    public static Position create() {
+        return new Position(START_POSITION_VALUE);
     }
 
     public void attemptForward() {

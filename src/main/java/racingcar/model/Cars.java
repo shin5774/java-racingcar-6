@@ -10,18 +10,24 @@ public class Cars {
         this.cars = cars;
     }
 
-    public static Cars of(List<String> requestCars) {
-        List<Car> cars = requestCars.stream()
-                .map(Cars::generateCar)
-                .toList();
+    public static Cars from(List<Car> cars) {
+        validate(cars);
 
         return new Cars(cars);
     }
 
-    private static Car generateCar(String name) {
-        return new Car(new Name(name), new Position());
+    private static void validate(List<Car> cars) {
+        if (hasDuplicated(cars)) {
+            throw new IllegalArgumentException();
+        }
     }
 
+    private static boolean hasDuplicated(List<Car> cars) {
+        return cars.stream()
+                .map(Car::getName)
+                .distinct()
+                .count() != cars.size();
+    }
 
     public void attemptForward() {
         cars.forEach(Car::attemptForward);

@@ -4,7 +4,9 @@ import java.util.Arrays;
 import java.util.List;
 import racingcar.constants.Constants;
 import racingcar.dto.CarsDto;
+import racingcar.model.Car;
 import racingcar.model.Cars;
+import racingcar.model.Name;
 
 public class CarsMapper implements Mapper<CarsDto, Cars> {
     private static final String DELIMITER = ",";
@@ -25,6 +27,11 @@ public class CarsMapper implements Mapper<CarsDto, Cars> {
 
     @Override
     public Cars toDomain(CarsDto dto) {
-        return Cars.of(dto.cars());
+        List<Car> cars = dto.cars().stream()
+                .map(Name::from)
+                .map(Car::from)
+                .toList();
+
+        return Cars.from(cars);
     }
 }

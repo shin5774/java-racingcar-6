@@ -6,9 +6,17 @@ public class Car implements Comparable<Car> {
     private final Name name;
     private final Position position;
 
-    public Car(Name name, Position position) {
+    private Car(Name name, Position position) {
         this.name = name;
         this.position = position;
+    }
+
+    public static Car from(Name name) {
+        return new Car(name, Position.create());
+    }
+
+    public Name getName() {
+        return name;
     }
 
     public String getNameValue() {
@@ -32,11 +40,9 @@ public class Car implements Comparable<Car> {
         if (position.position() > object.position.position()) {
             return 1;
         }
-
         if (position == object.position) {
             return 0;
         }
-
         return -1;
     }
 }
