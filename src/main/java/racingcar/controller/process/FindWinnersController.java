@@ -2,9 +2,7 @@ package racingcar.controller.process;
 
 import java.util.List;
 import racingcar.dto.Winners;
-import racingcar.model.Car;
 import racingcar.model.Cars;
-import racingcar.util.WinnersNameExtractor;
 
 public class FindWinnersController {
     private final Cars cars;
@@ -17,7 +15,7 @@ public class FindWinnersController {
         return toWinners(cars.findWinningCars());
     }
 
-    private Winners toWinners(List<Car> winnersCar) {
-        return WinnersNameExtractor.INSTANCE.extractName(winnersCar);
+    private Winners toWinners(List<String> winnersCar) {
+        return new Winners(winnersCar);
     }
 }

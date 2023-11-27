@@ -2,7 +2,6 @@ package racingcar.util;
 
 import java.util.Arrays;
 import java.util.List;
-import racingcar.constants.Constants;
 import racingcar.dto.CarsDto;
 import racingcar.model.Car;
 import racingcar.model.Cars;
@@ -10,6 +9,7 @@ import racingcar.model.Name;
 
 public class CarsMapper implements Mapper<CarsDto, Cars> {
     private static final String DELIMITER = ",";
+    public static final String WHITESPACE = " ";
     private static final String EMPTY = "";
 
     @Override
@@ -22,7 +22,7 @@ public class CarsMapper implements Mapper<CarsDto, Cars> {
     }
 
     private String removeWhiteSpace(String name) {
-        return name.replace(Constants.WHITESPACE, EMPTY);
+        return name.replace(WHITESPACE, EMPTY);
     }
 
     @Override

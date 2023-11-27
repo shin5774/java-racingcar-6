@@ -39,11 +39,12 @@ public class Cars {
                 .toList());
     }
 
-    public List<Car> findWinningCars() {
+    public List<String> findWinningCars() {
         Car winningCar = findWinningCar();
 
         return cars.stream()
                 .filter(car -> car.isSamePosition(winningCar))
+                .map(Car::getNameValue)
                 .toList();
     }
 

@@ -1,5 +1,6 @@
 package racingcar.dto;
 
-public record Winners(String name) {
+import java.util.List;
 
+public record Winners(List<String> names) {
 }

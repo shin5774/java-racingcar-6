@@ -11,16 +11,14 @@ import racingcar.dto.Winners;
 import racingcar.model.AttemptCount;
 import racingcar.model.Cars;
 import racingcar.view.InputView;
-import racingcar.view.OutputView;
 
 public class RacingGameApplication {
 
     private final InputView inputView;
-    private final OutputView outputView;
 
-    public RacingGameApplication(InputView inputView, OutputView outputView) {
+
+    public RacingGameApplication(InputView inputView) {
         this.inputView = inputView;
-        this.outputView = outputView;
     }
 
     public void start() {
@@ -51,10 +49,10 @@ public class RacingGameApplication {
     }
 
     private void displayTotalResult(TotalResult totalResult) {
-        new DisplayTotalResultController(outputView).proceed(totalResult);
+        new DisplayTotalResultController().proceed(totalResult);
     }
 
     private void displayWinners(Winners winners) {
-        new DisplayWinnerController(outputView).proceed(winners);
+        new DisplayWinnerController().proceed(winners);
     }
 }
