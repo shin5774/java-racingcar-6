@@ -2,8 +2,8 @@ package racingcar;
 
 import racingcar.controller.display.DisplayTotalResultController;
 import racingcar.controller.display.DisplayWinnerController;
-import racingcar.controller.process.CalculateTotalResultController;
-import racingcar.controller.process.findWinnersController;
+import racingcar.controller.process.FindWinnersController;
+import racingcar.controller.process.ProceedGameController;
 import racingcar.controller.request.RequestAttemptCountController;
 import racingcar.controller.request.RequestCarsController;
 import racingcar.dto.TotalResult;
@@ -24,8 +24,8 @@ public class RacingGameApplication {
     }
 
     public void start() {
-        Cars cars = generateCars();
-        AttemptCount attemptCount = setAttemptCount();
+        Cars cars = requestCars();
+        AttemptCount attemptCount = requestAttemptAmount();
 
         TotalResult totalResult = playGame(cars, attemptCount);
         Winners winners = findWinners(cars);
@@ -34,20 +34,20 @@ public class RacingGameApplication {
         displayWinners(winners);
     }
 
-    private Cars generateCars() {
+    private Cars requestCars() {
         return new RequestCarsController(inputView).proceed();
     }
 
-    private AttemptCount setAttemptCount() {
+    private AttemptCount requestAttemptAmount() {
         return new RequestAttemptCountController(inputView).proceed();
     }
 
     private TotalResult playGame(Cars cars, AttemptCount attemptCount) {
-        return new CalculateTotalResultController(cars, attemptCount).proceed();
+        return new ProceedGameController(cars, attemptCount).proceed();
     }
 
     private Winners findWinners(Cars cars) {
-        return new findWinnersController(cars).proceed();
+        return new FindWinnersController(cars).proceed();
     }
 
     private void displayTotalResult(TotalResult totalResult) {

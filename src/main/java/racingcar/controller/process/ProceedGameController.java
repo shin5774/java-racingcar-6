@@ -7,11 +7,11 @@ import racingcar.dto.TotalResult;
 import racingcar.model.AttemptCount;
 import racingcar.model.Cars;
 
-public class CalculateTotalResultController {
+public class ProceedGameController {
     private final Cars cars;
     private final AttemptCount attemptCount;
 
-    public CalculateTotalResultController(Cars cars, AttemptCount attemptCount) {
+    public ProceedGameController(Cars cars, AttemptCount attemptCount) {
         this.cars = cars;
         this.attemptCount = attemptCount;
     }

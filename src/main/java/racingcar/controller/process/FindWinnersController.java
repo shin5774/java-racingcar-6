@@ -6,10 +6,10 @@ import racingcar.model.Car;
 import racingcar.model.Cars;
 import racingcar.util.WinnersNameExtractor;
 
-public class findWinnersController {
+public class FindWinnersController {
     private final Cars cars;
 
-    public findWinnersController(Cars cars) {
+    public FindWinnersController(Cars cars) {
         this.cars = cars;
     }
 
